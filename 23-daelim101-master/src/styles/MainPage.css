@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Secular+One&family=Varela+Round&display=swap');
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+  #Spage button{
+
+    border-radius: 50px;
+    color:white;
+    font-size: 60px;
+    background-size: cover;
+  }
+  #lgPage{
+    position: absolute;
+    width: 100%;
+    height: 120vh;
+
+  }
+  #lgPage h1{
+    color: white;
+    font-size: 100px;
+    text-align: center;
+  }
+  .lgdate{
+    position: absolute;
+    top: 450px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    
+    height: 1000px;
+
+  }
+  .lgbox input{
+    width: 300px;
+    margin: 10px;
+    height: 40px;
+    line-height:10px;
+    
+  }
+
+  #Spage{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 120%;
+    background-color:rgba(35, 110, 185, 0.5);
+  }
+  #Wc{
+
+    background-color: white;
+    background-size: cover;
+    color: white;
+  }
+  #Wc:hover {
+
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.7);
+  }
+  #Wc:hover h3{
+    line-height: 20px;
+    text-align: center;
+  }
+  #Wc:hover p{
+    line-height: 30px;
+    margin: 150px;
+    text-align: center;
+  }
+  #Bd{
+
+    background-color: white;
+    background-size: cover;
+    color: white;
+  }
+  #Bd:hover {
+
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.7);
+  }
+  #Bd:hover h3{
+    line-height: 20px;
+    text-align: center;
+  }
+  #Bd:hover p{
+    line-height: 30px;
+    margin: 150px;
+    text-align: center;
+  }
+
+  #Swrapper{
+    margin: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,1fr));
+    grid-gap:1rem;
+    grid-auto-rows: 600px;
+
+  }
+  .start{
+    text-align: center;
+
+  }
+  .start button{
+    width: 400px;
+    height: 150px;
+  }
+  .Scard{
+    background-color: #fff;
+    box-shadow: 0px 1px 5px #222;
+    margin: 30px;
+    border-radius: 75px;
+
+    text-align: center;
+    line-height: 900px;
+    font-size: 25px;
+  }
+  body {
+    list-style: none;
+    font-size: 16px;
+  }
+  .header{
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid #000;
+    background-color: #82aae3;
+
+    
+
+  }
+  .Lhead{
+    float: left;
+    height: 80px;
+    line-height: 110px;
+  }
+  .Lhead h1{
+    line-height: 40px;
+    color: white;
+    text-shadow: -0.5px 0 gray, 0 0.5px gray , 0.5px 0 gray ,0 -0.5px gray;
+
+  }
+  .Lhead li {
+    float: left;
+  }
+  .Rhead{
+    float: right;
+    height: 80px;
+    line-height: 40px;
+    color:white
+  }
+  .Rhead p {    
+    display: inline-block;
+    margin-right: 10px;  
+  }
+  .header img{
+    width: 90px;
+    height: 90px;
+    
+  }
+  .header .Rhead img{
+    width: 50px;
+    height: 50px;
+  }
+
+  .Menu{
+    font-size: 25px;
+    font-weight: bold;
+    color:white;
+    height: 65px;
+    text-align: center;
+    border-bottom: 1px solid black;
+  }
+  .Menu li a{
+    float: left;
+    line-height: 65px;
+
+    width: 220px;
+    border-right: 1px solid #000;
+  }
+
+  .Menu li img{
+    width: 30px;
+    height: 30px;
+  }
+  a { text-decoration: none; color: black; }
+  a:visited { text-decoration: none; }
+  a:hover { text-decoration: none; }
+  a:focus { text-decoration: none; }
+  a:hover, a:active { text-decoration: none; }
+
+
+
+  #wrapper{
+
+    margin: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-gap:1rem;
+    grid-auto-rows: 380px;
+
+  }
+  #wrapper h3{
+    color: white;
+    text-shadow: -1.5px 0 gray, 0 1.5px gray , 1.5px 0 gray ,0 -1.5px gray;
+  }
+
+  .Maincard {
+    
+    background-color: #fff;
+    box-shadow: 0px 1px 5px #222;
+    margin: 30px;
+    border-radius: 75px;
+    text-align: center;
+    line-height: 500px;
+    font-size: 25px;
+  }
+  #men{
+
+    background-color: white;
+    background-size: cover;
+  }
+  #girl{
+
+    background-color: white;
+    background-size: cover;
+  }
+  #com{
+    background-color: white;
+    background-size: cover;
+  }
+  #Bwrapper{
+
+    margin: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px,1fr));
+    grid-gap:1rem;
+    grid-auto-rows: 300px;
+  }
+  .Bcard {
+    background-color: white;
+    color:white;
+    background-color: #fff;
+    box-shadow: 0px 1px 5px #222;
+    margin: 30px;
+    border-radius: 40px;
+    text-align: center;
+
+    font-size: 25px;
+  }
+
+  .footer{   
+    list-style: none;
+    height:100px;  /* 높이 */
+    margin-top: 70px;
+    border-top:3px solid #eee;
+    background-color: #eafdfc;
+    color:gray
+  }
+  #bottomMenu{
+    color:white;
+    list-style: none;
+    width:100%;
+    height:20px;
+    position:relative;  
+  }
+  #bottomMenu ul li:last-child{
+    color:gray;
+    list-style: none;
+    border:none;  /* 마지막 항목에는 오른쪽 테두리 없음 */  
+  }
+  #bottomMenu ul {
+    color:gray;
+    list-style: none;
+    margin-top:15px;  
+  }
+  #bottomMenu ul li{
+    color:gray;
+    float:left;  /* 가로로 배치 */ 
+    padding:5px 20px;
+    border-right:1px solid #ddd;   /* 항목 오른쪽에 테두리 */ 
+  }
+  #bottomMenu ul li:last-child{
+    color:gray;
+    border:none;  /* 마지막 항목에는 오른쪽 테두리 없음 */  
+  }
+  #bottomMenu ul li a, #bottomMenu ul li a:visited {  
+    color:gray;
+    font-size:15px;  /* 글자 크기 */ 
+       /* 글자 색 */ 
+  }
+  #sns {
+    position:absolute;  
+    right:0;  /* 오른쪽 끝에 배치 */ 
+  }
+  #sns ul li{
+    border:none;  /* 테두리 없이 */
+    padding:5px;   
+  } 
+  #company{
+    clear:left;  /* 플로팅 해제. clear:both도 가능 */
+    margin-top:25px;  /* 위쪽 마진 */
+    margin-left:20px;  /* 왼쪽 마진 */ 
+  }
+  
+
+  .lgbox button{
+    width: 100px;
+    height: 40px;
+    line-height: 30px;
+    text-align: center;
+    margin-left: 15px;
+    background-color: rgb(93, 148, 196);
+  }
