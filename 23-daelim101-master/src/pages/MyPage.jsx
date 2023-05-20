@@ -165,7 +165,7 @@ const MyPage = () => {
 
   return (
     <section className="about">
-      <div className="card">
+      <div className="MPcard">
         <div className="profile">
           <img src={imageUrl} alt="user uploaded" />
         </div>

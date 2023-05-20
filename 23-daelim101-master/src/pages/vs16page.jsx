@@ -1,208 +1,124 @@
-import React from 'react';
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ref, listAll, getDownloadURL } from "firebase/storage";
+import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { auth, storage } from '../firebase-config';
+import  '../styles/vs16Man.css'
+function VsPage16() {
+  const [displays, setDisplays] = useState([]);
+  const [winnerDisplay, setWinnerDisplay] = useState(false);
+
+  const [roundCount, setRoundCount] = useState(1);
+  const [totalRound, setTotalRound] = useState(8);
+  const [hodus, setHodus] = useState([]);
+  const [winnerHodu, setWinnerHodu] = useState([]);
 
 
-// const style = {
-//     position: 'absolute',
-//     top: '50%',
-//     left: '50%',
-//     transform: 'translate(-50%, -50%)',
-//     width: 400,
-//     bgcolor: 'background.paper',
-//     boxShadow: 24,
-//     p: 4,
-//     borderRadius : 5,
-//   };
+  useEffect(() => {
+    const listAllImages = async () => {
+        try {
+          const imagesRef = ref(storage, 'user-M/test1'); // user-M 폴더 경로로 수정
+          const imagesSnapshot = await listAll(imagesRef);
+      
+          if (imagesSnapshot.items.length >= totalRound + 2) { // 변경된 부분
+            const randomIndexes = getRandomIndexes(imagesSnapshot.items.length, totalRound + 2);
+            const imagePromises = randomIndexes.map(async (index) => {
+              const item = imagesSnapshot.items[index];
+              const url = await getDownloadURL(item);
+              return {
+                name: item.name,
+                src: url,
+              };
+            });
+      
+            const images = await Promise.all(imagePromises);
+            setDisplays(images.slice(0, 2));
 
-
-
-
-
-function VsPage16(){
-
-
-    
-
-
-
-
-    const user = auth.currentUser;
-    const [imageUrl, setImageUrl] = useState('');
-
-    useEffect(() => {
-        const imagesRef = ref(storage, 'user/');
-        listAll(imagesRef)
-          .then((res) => {
-            const randomIndex = Math.floor(Math.random() * res.items.length);
-            const randomImageRef = res.items[randomIndex];
-            return getDownloadURL(randomImageRef);
-          })
-          .then((url) => {
-            setImageUrl(url);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }, []);
-
-
-      const items = [
-        {
-            name : "남자",
-            src : imageUrl
-           
-        },
-        {
-            name : "남자",
-            src : imageUrl
-        },
-        {
-            name : "남자",
-            src : imageUrl
-        },
-        {
-            name : "남자",
-            src : imageUrl
-        },
-        {
-            name : "남자",
-            src : imageUrl
-        },
-        {
-            name : "남자",
-            src : imageUrl
-        },
-        {
-            name : "남자",
-            src : imageUrl
-        },
-        {
-            name : "남자",
-            src : imageUrl
-        },
-        
-        
-    ];
-
-    const currentUrl = window.location.href;
-    const [hodus, setHodu] = useState([]);
-
-    useEffect(() => {
-        items.sort(() => Math.random() - 0.5);
-        setHodu(items);
-        setDisplays([items[0], items[1]]);
-    }, []);
-
-    const [displays, setDisplays] = useState([]);
-    const [winnerdisplay, setWinnerDisplay] = useState(false);
-    const [winnerhodu, setWinners] = useState([]);
-    const [roundCount, setRound] = useState(1);
-    const [totalRound, setTotal] = useState(8);
-
-    const clickEvent = hodu => () => {
-        if (hodus.length <= 2) {
-            if (winnerhodu.length === 0) {
-              setDisplays([hodu]);
-              setWinnerDisplay(true);
-            } else {
-              let updatedHodu = [...winnerhodu, hodu];
-              setHodu(updatedHodu);
-              setDisplays([updatedHodu[0], updatedHodu[1]]);
-              setWinners([]);
-              setRound(1);
-              setTotal(totalRound / 2);
-            }
-        } 
-        else if (hodus.length > 2) {
-            setWinners([...winnerhodu, hodu]);
-            setDisplays([hodus[2], hodus[3]]);
-            setHodu(hodus.slice(2));
-            setRound(roundCount + 1);
+          }
+        } catch (error) {
+          console.log(error);
         }
+      };
+
+        
+    listAllImages();
+    
+  }, []);
+
+  const getRandomIndexes = (range, count) => {
+    const indexes = new Set();
+    while (indexes.size < count) {
+      const index = Math.floor(Math.random() * range);
+      indexes.add(index);
     }
+    return Array.from(indexes);
+  };
 
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const clickEvent = hodu => () => {
+    if (hodus.length <= 2) {
+        if (winnerHodu.length === 0) {
+          setDisplays([hodu]);
+          setWinnerDisplay(true);
+        } else {
+          let updatedHodu = [...winnerHodu, hodu];
+          setHodus(updatedHodu);
+          setDisplays([updatedHodu[0], updatedHodu[1]]);
+          winnerHodu([]);
+          setRoundCount(1);
+          setTotalRound(totalRound / 2);
+        }
+    } 
+    else if (hodus.length > 2) {
+        setWinnerDisplay([...winnerHodu, hodu]);
+        setDisplays([hodus[2], hodus[3]]);
+        setWinnerHodu(hodus.slice(2));
+        setRoundCount(roundCount + 1);
+    }
+    
+  
+    setDisplays((prevDisplays) => {
+      return prevDisplays.filter((h) => h === hodu);
+    });
+  };
 
-    const handleKakaoButton = () => {
-        window.Kakao.Link.sendScrap({
-            requestUrl: currentUrl, 
-    })};
-
-    return(
-        <div className="styles.page">
-            <div className="styles.card">
-                {winnerdisplay ? (
-                    <div>
-                        <h1 className="styles.title">
-                            최종
-                        </h1>
-                        <div className="styles.title">
-                            <img className="styles.winnerhodu" src={displays[0].src}/>
-                        </div>
-                        <div className="styles.title">
-                            <label>{displays[0].name}</label>
-                        </div>
-                        <div className="styles.action">
-                            <Link to="/" style={{ textDecoration: 'none' }}>
-                                    <input type='submit'
-                                    value="다시하기"></input>
-                            </Link>
-                            <input type="submit"
-                            value="공유하기"
-                            onClick={handleOpen}/>
-                            {/* <Modal
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
-                            >
-                                <Box sx={style}>
-                                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                                        공유하기
-                                    </Typography>
-                                    <CopyToClipboard text={currentUrl}>
-                                        <Button id="modal-modal-description" sx={{ mt: 2 }}>
-                                            <AiOutlineLink/>
-                                            &nbsp;링크 복사하기
-                                        </Button>
-                                    </CopyToClipboard>
-                                    <br/>
-                                    <Button id="modal-modal-description" sx={{ mt: 2 }} onClick={handleKakaoButton}>
-                                        <RiKakaoTalkLine/>
-                                        &nbsp;카카오톡 공유하기
-                                    </Button>
-                                </Box>
-                            </Modal> */}
-                        </div>
-                    </div>
-                ) : (
-                <div>
-                    <h1 className="styles.title">
-                        이상형 월드컵 &nbsp;&nbsp;남성&nbsp;&nbsp;{roundCount}/{totalRound}
-                    </h1>
-                    <div className="styles.basic">
-                    {
-                        displays.map(d => {
-                            return (
-                                <div className="styles.vsImg" key={d.name} onClick={clickEvent(d)}>
-                                    <img className="styles.kinghodu" src={d.src} />
-                                    <div>{d.name}</div>
-                                </div>
-                            );
-                        })
-                    }
-                    </div>
-                </div>
-                )
-            }
+  return (
+    <div className="page">
+      <div className="card">
+        {winnerDisplay ? (
+          <div className='WC'>
+            <h1 className="title">최종</h1>
+            {displays.length > 0 && (
+              <div className="title">
+                <img className="winnerhodu" src={displays[0].src} alt={displays[0].name} />
+              </div>
+            )}
+            {displays.length > 0 && (
+              <div className="title">
+                <label>{displays[0].name}</label>
+              </div>
+            )}
+            <div className="action">
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <input type="submit" value="다시하기" />
+              </Link>
+              <input type="submit" value="공유하기" />
             </div>
-        </div>
-    );
+          </div>
+        ) : (
+          <div>
+            <h1 className="title">이상형 월드컵 &nbsp;&nbsp;남성&nbsp;&nbsp;{roundCount}/{totalRound}</h1>
+            <div className="basic">
+            {displays.map((d) => (
+                <div className="vsImg" key={d.name} onClick={clickEvent(d)}>
+                <img className="kinghodu" src={d.src} alt={d.name} />
+                <div>{d.name}</div>
+            </div>
+            ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default VsPage16;
+export default VsPage16
