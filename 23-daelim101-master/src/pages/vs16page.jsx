@@ -11,49 +11,63 @@ function VsPage16() {
   const [totalRound, setTotalRound] = useState(8);
   const [hodus, setHodus] = useState([]);
   const [winnerHodu, setWinnerHodu] = useState([]);
+useEffect(() => {
+  const listAllImages = async () => {
+    try {
+      const foldersRef = ref(storage, 'user-M');
+      const foldersSnapshot = await listAll(foldersRef);
 
+      const randomFolderIndex = Math.floor(Math.random() * foldersSnapshot.prefixes.length);
+      const selectedFolder = foldersSnapshot.prefixes[randomFolderIndex];
 
-  useEffect(() => {
-    const listAllImages = async () => {
-        try {
-          const imagesRef = ref(storage, 'user-M/test1'); // user-M 폴더 경로로 수정
-          const imagesSnapshot = await listAll(imagesRef);
-      
-          if (imagesSnapshot.items.length >= totalRound + 2) { // 변경된 부분
-            const randomIndexes = getRandomIndexes(imagesSnapshot.items.length, totalRound + 2);
-            const imagePromises = randomIndexes.map(async (index) => {
-              const item = imagesSnapshot.items[index];
-              const url = await getDownloadURL(item);
-              return {
-                name: item.name,
-                src: url,
-              };
-            });
-      
-            const images = await Promise.all(imagePromises);
-            setDisplays(images.slice(0, 2));
+      const imagesRef = ref(storage, selectedFolder);
+      const imagesSnapshot = await listAll(imagesRef);
 
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      };
+      if (imagesSnapshot.items.length >= 2) {
+        const randomIndexes = getRandomIndexes(imagesSnapshot.items.length, 2);
+        const imagePromises = randomIndexes.map(async (index) => {
+          const item = imagesSnapshot.items[index];
+          const url = await getDownloadURL(item);
+          return {
+            name: item.name,
+            src: url,
+          };
+        });
 
-        
-    listAllImages();
-    
-  }, []);
-
-  const getRandomIndexes = (range, count) => {
-    const indexes = new Set();
-    while (indexes.size < count) {
-      const index = Math.floor(Math.random() * range);
-      indexes.add(index);
+        const images = await Promise.all(imagePromises);
+        setDisplays(images);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    return Array.from(indexes);
   };
 
-  const clickEvent = hodu => () => {
+  listAllImages();
+}, []);
+
+const getRandomIndexes = (range, count) => {
+  const indexes = new Set();
+  while (indexes.size < count) {
+    const index = Math.floor(Math.random() * range);
+    indexes.add(index);
+  }
+  return Array.from(indexes);
+};
+
+const getUniqueRandomIndexes = (range, count) => {
+  if (range < count) {
+    throw new Error('The range should be greater than or equal to the count.');
+  }
+
+  const indexes = new Set();
+  while (indexes.size < count) {
+    const index = Math.floor(Math.random() * range);
+    indexes.add(index);
+  }
+  return Array.from(indexes);
+};
+
+const clickEvent = hodu => () => {
     if (hodus.length <= 2) {
         if (winnerHodu.length === 0) {
           setDisplays([hodu]);
@@ -62,7 +76,7 @@ function VsPage16() {
           let updatedHodu = [...winnerHodu, hodu];
           setHodus(updatedHodu);
           setDisplays([updatedHodu[0], updatedHodu[1]]);
-          winnerHodu([]);
+          setWinnerDisplay([]);
           setRoundCount(1);
           setTotalRound(totalRound / 2);
         }
@@ -70,15 +84,10 @@ function VsPage16() {
     else if (hodus.length > 2) {
         setWinnerDisplay([...winnerHodu, hodu]);
         setDisplays([hodus[2], hodus[3]]);
-        setWinnerHodu(hodus.slice(2));
+        setHodus(hodus.slice(2));
         setRoundCount(roundCount + 1);
     }
-    
-  
-    setDisplays((prevDisplays) => {
-      return prevDisplays.filter((h) => h === hodu);
-    });
-  };
+}
 
   return (
     <div className="page">
