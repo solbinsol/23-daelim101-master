@@ -11,6 +11,7 @@
     background-color: #82aae3;
     color: white;
     line-height: 80px;
+    float: left;
    }
    .Lhead{
      float: left;
@@ -34,8 +35,8 @@
    }
    .wrapper{
     width: 100%;
-    min-height: 100px;
-    justify-content: space-between;
+    float: left;
+
  }
    
    .title{
@@ -55,10 +56,7 @@
     
  }
    
-   *html #content2 {
-    height: 100%;
-   }
-   
+
    #footer2 {
     width: 100%;
     height: 100px;
@@ -70,7 +68,7 @@
     font-size: 11px;
     text-align: center;
     background-color: #eafdfc;
-    display: flex;
+
    }
    
    #footer2 a {
@@ -99,17 +97,14 @@
    }
    
    #content2{
+    float: left;
     background-color: white;
     width: 100%;
-     height: 600px; /* 아 시발 이게 애매하네*/
-     /* position: relative; */
+
    }
    
    
-   .content2 {
-    height: 10000p;
-    
-   }
+
    
    .slider {
       width: 100%;
@@ -118,6 +113,7 @@
       display: none;
    }
    .testimonials {
+    height: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -128,7 +124,7 @@
    }
    .testimonials .item {
       width: 500px;
-      padding: 55px;
+      padding-top: 80px;
       border-radius: 5px;
       background-color: #bfeaf5;
       position: absolute;
@@ -139,12 +135,13 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       user-select: none;
       cursor: pointer;
-      height: 330px;
+      height: 400px;
    }
    .testimonials .item img {
-      width: 250px;
-      height: 250px;
+      width: 230px;
+      height: 230px;
       object-fit: cover;
+
       border-radius: 50%;
       border: 5px solid white;
    }
@@ -162,12 +159,12 @@
       align-items: center;
    }
    .dots label {
-      height: 5px;
-      width: 5px;
+      height: 10px;
+      width: 10px;
       border-radius: 50%;
       cursor: pointer;
       background-color: black;
-      margin: 7px;
+      margin: 10px 10px 0px 0px;
       transition-duration: 0.2s;
    }
    
@@ -244,8 +241,10 @@
    .w-btn {
     position: relative;
     border: none;
-    display: inline-block;
+    font-size: 20px;
     padding: 15px 30px;
+    width: 180px;
+    height: 60px;
     border-radius: 15px;
     font-family: "paybooc-Light", sans-serif;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
