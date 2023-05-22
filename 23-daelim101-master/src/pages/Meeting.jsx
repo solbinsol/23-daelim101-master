@@ -93,7 +93,7 @@ function Meeting() {
 
     const [selectedSlide, setSelectedSlide] = useState('t-1');
   return (
-    <>
+    <div>
       <header id="header2">
       <div className="Lhead">
           <li><img className="weblogo" src="../img/Daelim_logo.png" /></li>
@@ -182,7 +182,7 @@ function Meeting() {
           </nav>
         </footer>
       </div>
-    </>
+    </div>
   );
 }
 
