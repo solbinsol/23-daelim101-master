@@ -8,6 +8,7 @@ import MyPage from './pages/MyPage';
 import MainPage from './pages/MainPage';
 import VsPage16 from './pages/vs16page';
 import VsPage16test from './pages/vs16pageTest';
+import Meeting from './pages/Meeting';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
+          <Route path="/meeting" element={<Meeting />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="login" element={<Login/>}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
