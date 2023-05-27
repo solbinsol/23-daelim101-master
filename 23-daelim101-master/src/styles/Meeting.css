@@ -5,7 +5,7 @@
    
    #header2{
     width: 100%;
-     height: 80px;
+     height: 110px;
      /* display: flex;
      justify-content: space-between; */
     background-color: #82aae3;
@@ -53,14 +53,15 @@
    
    #box {
     padding-top: 100px;
-    
+
+    height: 80vh;
  }
    
 
    #footer2 {
     width: 100%;
-    height: 100px;
-
+    height: 125px;
+    bottom: 0px;
     position: absolute;
     border-top: 1px solid #c4c4c4;
     padding-top: 15px;
@@ -119,31 +120,33 @@
       justify-content: center;
       position: relative;
       min-height: 350px;
-      perspective: 1000px;
+      perspective: 2000px;
       overflow: hidden;
    }
    .testimonials .item {
-      width: 500px;
-      padding-top: 80px;
-      border-radius: 5px;
+      width: 600px;
+      height: 400px;
+      padding-top: 15px;
+      border-radius: 15px;
       background-color: #bfeaf5;
       position: absolute;
-      top: 0;
+
       box-sizing: border-box;
       text-align: center;
       transition: transform 0.4s;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       user-select: none;
       cursor: pointer;
-      height: 400px;
+
+
    }
    .testimonials .item img {
-      width: 230px;
-      height: 230px;
+      width: 310px;
+      height: 310px;
       object-fit: cover;
-
-      border-radius: 50%;
-      border: 5px solid white;
+      border-radius: 100%;
+      
+      border: 3px solid white;
    }
    .testimonials .item p {
       color: black;
@@ -234,9 +237,7 @@
    #t-5:checked ~ .testimonials label[for="t-5"] {
       z-index: 4;
    }
-   button {
-    /* margin: 20px; */
-   }
+
    
    .w-btn {
     position: relative;

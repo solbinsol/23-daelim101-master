@@ -33,8 +33,8 @@ function Meeting() {
             const imagesRef = ref(storage, selectedFolder);
             const imagesSnapshot = await listAll(imagesRef);
       
-            if (imagesSnapshot.items.length >= 2) {
-              const randomIndexes = getRandomIndexes(imagesSnapshot.items.length, 2);
+            if (imagesSnapshot.items.length >=4) {
+              const randomIndexes = getRandomIndexes(imagesSnapshot.items.length, 4);
               const imagePromises = randomIndexes.map(async (index) => {
                 const item = imagesSnapshot.items[index];
                 const url = await getDownloadURL(item);
@@ -127,7 +127,7 @@ function Meeting() {
             <div className="testimonials">
               <label className="item" htmlFor="t-1">
                 <img src={displays[0]?.src} />
-                <h1>{}</h1>
+                <h1>{displays[0]?.name}</h1>
                 <p>{}</p>
                 <button className="w-btn w-btn-blue" type="button">
                   messages
@@ -150,8 +150,8 @@ function Meeting() {
                 </button>
               </label>
               <label className="item" htmlFor="t-4">
-                <img src={displays[2]?.src} />
-                <h1>이지은</h1>
+                <img src={displays[3]?.src} />
+                <h1>{displays[2]?.name}</h1>
                 <p>컴퓨터정보학부</p>
                 <button className="w-btn w-btn-blue" type="button">
                   messages
